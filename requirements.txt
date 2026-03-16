@@ -1,0 +1,6 @@
+kafka-python
+pandas
+python-dotenv
+kaggle
+boto3
+pyarrow
