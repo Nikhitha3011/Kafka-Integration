@@ -70,23 +70,4 @@ Behavior and limits
 - `kafka_to_s3.py` will only process datasets listed in `DATASETS_TO_UPLOAD` and will upload up to `UPLOAD_LIMIT` parquet files per dataset (defaults are shown in the script).
 - The consumer batches records by partition keys (example: `customer_state` or `order_date`) and uploads a parquet file every 100 records.
 
-Local test datasets
-- If you don't want to download Kaggle data, you can use the CSVs already present in `kaggle_download/` for testing. Point `DOWNLOAD_DIR` to that folder and skip the `kaggle` CLI step.
 
-Troubleshooting & tips
-- If `kaggle` command fails, ensure you have `kaggle` installed and `kaggle.json` placed per Kaggle docs.
-- If the consumer does not upload, verify AWS creds, S3 bucket name, and that the script's dotenv path is correct.
-- To test without S3, you can modify `upload_parquet_to_s3` to write locally instead of calling `s3.put_object`.
-
-Next steps (ideas)
-- Add a `requirements.txt` or `pyproject.toml` for reproducible installs.
-- Make dotenv loading consistent (use relative `dev.env` everywhere).
-- Add CLI arguments to both scripts for topics, bootstrap servers, limits, and env path.
-- Add unit tests and a small runner to simulate producer → consumer locally.
-
-Files changed
-- Updated [README.md](README.md) with these step-by-step instructions.
-
-If you want, I can also:
-- create a `requirements.txt` and update `kafka_to_s3.py` to load relative env file consistently.
-- add small CLI flags to override defaults at runtime.
